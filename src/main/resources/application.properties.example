@@ -6,3 +6,6 @@ spring.datasource.password=*********
 
 # Context Path
 server.servlet.context-path=/api
+
+# Log sql
+logging.level.com.dongjinbaek.wordbooks.mapper=TRACE
