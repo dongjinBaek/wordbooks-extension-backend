@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.dongjinbaek.wordbooks.dao")
+@MapperScan("com.dongjinbaek.wordbooks.mapper")
 public class MybatisConfiguration {
     @Autowired
     ApplicationContext applicationContext;

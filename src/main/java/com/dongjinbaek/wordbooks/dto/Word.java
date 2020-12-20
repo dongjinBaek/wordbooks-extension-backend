@@ -10,9 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Word {
-    private String userid;
+    private String userId;
     private String english;
     private String korean;
     private String example;
+    private Boolean memorized;
     private String updatedAt;
 }
