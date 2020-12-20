@@ -29,3 +29,6 @@ hs_err_pid*
 .classpath
 .factorypath
 .project
+
+# hidden for security
+src/main/resources/application.properties
