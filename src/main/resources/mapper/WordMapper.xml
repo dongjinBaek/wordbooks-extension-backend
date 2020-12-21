@@ -9,4 +9,8 @@
 		  AND english LIKE CONCAT(#{term}, '%')
 	</select>
 
+	<insert id="addWord">
+		INSERT INTO Wordbooks (user_id, english, korean, example, memorized, updated_at)
+		VALUES (#{userId}, #{english}, #{korean}, #{example}, false, NOW())
+	</insert>
 </mapper>

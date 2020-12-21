@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordService {
     @Autowired
-    WordMapper WordMapper;
+    WordMapper wordMapper;
 
-    public List<Word> search(String term) {
-        String userId = "dj9136";
-        return WordMapper.search(userId, term);
+    public List<Word> search(String userId, String term) {
+        return wordMapper.search(userId, term);
+    }
+
+    public int addWord(Word word) {
+        return wordMapper.addWord(word);
     }
 }
