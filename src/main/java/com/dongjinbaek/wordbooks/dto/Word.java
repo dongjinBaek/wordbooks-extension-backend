@@ -10,4 +10,9 @@ public class Word {
     private String example;
     private Boolean memorized;
     private String updatedAt;
+
+    public Word(String english, String korean) {
+        this.english = english;
+        this.korean = korean;
+    }
 }
