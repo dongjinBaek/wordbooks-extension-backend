@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dongjinbaek.wordbooks.mapper.WordMapper">
+
+	<select id="get" resultType="Word">
+		SELECT *
+        FROM Wordbooks
+		WHERE user_id = #{userId}
+		  AND english = #{english}
+	</select>
+
 	<select id="search" resultType="Word">
 		SELECT *
         FROM Wordbooks
