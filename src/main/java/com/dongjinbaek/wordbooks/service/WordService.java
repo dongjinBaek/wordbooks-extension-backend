@@ -15,7 +15,11 @@ public class WordService {
     @Autowired
     WordMapper wordMapper;
 
-    public List<Word> search(String userId, String term) {
+    public Word getWord(String userId, String english) {
+        return wordMapper.getWord(userId, english);
+    }
+    
+    public List<Word> getWordLists(String userId, String term) {
         Translate translate = TranslateOptions.newBuilder().setTargetLanguage("ko").build().getService();
 
         String korean = translate.translate(term).getTranslatedText();
@@ -23,12 +27,16 @@ public class WordService {
             korean = "";
         }
         Word translated = new Word(term, korean);
-        List<Word> words = wordMapper.search(userId, term);
+        List<Word> words = wordMapper.searchWords(userId, term);
         words.add(0, translated);
         return words;
     }
 
     public int addWord(Word word) {
         return wordMapper.addWord(word);
+    }
+
+    public int deleteWord(String userId, String english) {
+        return wordMapper.deleteWord(userId, english);
     }
 }

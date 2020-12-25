@@ -8,9 +8,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface WordMapper {
 
-    Word get(@Param("userId") String userId, @Param("english") String english);
+    Word getWord(@Param("userId") String userId, @Param("english") String english);
 
-    List<Word> search(@Param("userId") String userId, @Param("term") String term);
+    List<Word> searchWords(@Param("userId") String userId, @Param("term") String term);
 
     int addWord(Word word);
+
+    int deleteWord(@Param("userId") String userId, @Param("english") String english);
 }

@@ -3,14 +3,14 @@
 
 <mapper namespace="com.dongjinbaek.wordbooks.mapper.WordMapper">
 
-	<select id="get" resultType="Word">
+	<select id="getWord" resultType="Word">
 		SELECT *
         FROM Wordbooks
 		WHERE user_id = #{userId}
 		  AND english = #{english}
 	</select>
 
-	<select id="search" resultType="Word">
+	<select id="searchWords" resultType="Word">
 		SELECT *
         FROM Wordbooks
 		WHERE user_id = #{userId}
@@ -21,4 +21,10 @@
 		INSERT INTO Wordbooks (user_id, english, korean, example, memorized, updated_at)
 		VALUES (#{userId}, #{english}, #{korean}, #{example}, false, NOW())
 	</insert>
+
+	<delete id="deleteWord">
+		DELETE FROM Wordbooks
+		WHERE user_id = #{userId}
+		  AND english = #{english}
+	</delete>
 </mapper>
