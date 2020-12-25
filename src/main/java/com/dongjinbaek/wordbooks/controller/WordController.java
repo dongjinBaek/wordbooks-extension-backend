@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestController
 @RequestMapping("/words")
@@ -41,5 +43,15 @@ public class WordController {
     public void deleteWord(@PathVariable("english") String english) {
         String userId = "dj9136";
         wordService.deleteWord(userId, english);
+    }
+
+    @PutMapping("/{english}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateWord(@PathVariable("english") String english, @RequestBody Word word) {
+        if (!english.equals(word.getEnglish())) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+        }
+        word.setUserId("dj9136");
+        wordService.updateWord(word);
     }
 }

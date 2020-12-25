@@ -18,7 +18,7 @@ public class WordService {
     public Word getWord(String userId, String english) {
         return wordMapper.getWord(userId, english);
     }
-    
+
     public List<Word> getWordLists(String userId, String term) {
         Translate translate = TranslateOptions.newBuilder().setTargetLanguage("ko").build().getService();
 
@@ -38,5 +38,9 @@ public class WordService {
 
     public int deleteWord(String userId, String english) {
         return wordMapper.deleteWord(userId, english);
+    }
+
+    public int updateWord(Word word) {
+        return wordMapper.updateWord(word);
     }
 }

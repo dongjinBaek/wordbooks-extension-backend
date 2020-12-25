@@ -27,4 +27,14 @@
 		WHERE user_id = #{userId}
 		  AND english = #{english}
 	</delete>
+
+	<update id="updateWord">
+		UPDATE Wordbooks
+		SET korean = #{korean},
+			example = #{example},
+			memorized = #{memorized},
+			updated_at = NOW()
+		WHERE user_id = #{userId}
+		  AND english = #{english}
+	</update>
 </mapper>

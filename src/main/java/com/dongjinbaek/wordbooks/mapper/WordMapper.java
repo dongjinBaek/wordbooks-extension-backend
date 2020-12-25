@@ -15,4 +15,6 @@ public interface WordMapper {
     int addWord(Word word);
 
     int deleteWord(@Param("userId") String userId, @Param("english") String english);
+
+    int updateWord(Word word);
 }
