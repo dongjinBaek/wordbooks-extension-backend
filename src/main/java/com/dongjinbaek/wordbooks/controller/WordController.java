@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dongjinbaek.wordbooks.dto.Word;
 import com.dongjinbaek.wordbooks.service.WordService;
+import com.dongjinbaek.wordbooks.util.DateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,6 +38,9 @@ public class WordController {
     public List<Word> searchWithWord(@RequestParam("from-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
             @RequestParam("to-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) {
         String userId = "dj9136";
+
+        fromDate = DateUtils.atStartOfDay(fromDate);
+        toDate = DateUtils.atEndOfDay(toDate);
         return wordService.searchWithDate(userId, fromDate, toDate);
     }
 
