@@ -1,5 +1,6 @@
 package com.dongjinbaek.wordbooks.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dongjinbaek.wordbooks.mapper.WordMapper;
@@ -30,6 +31,10 @@ public class WordService {
         List<Word> words = wordMapper.searchWords(userId, term);
         words.add(0, translated);
         return words;
+    }
+
+    public List<Word> searchWithDate(String userId, Date fromDate, Date toDate) {
+        return wordMapper.searchWithDate(userId, fromDate, toDate);
     }
 
     public int addWord(Word word) {

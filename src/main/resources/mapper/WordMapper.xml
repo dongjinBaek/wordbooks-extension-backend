@@ -3,6 +3,7 @@
 
 <mapper namespace="com.dongjinbaek.wordbooks.mapper.WordMapper">
 
+
 	<select id="getWord" resultType="Word">
 		SELECT *
         FROM Wordbooks
@@ -15,6 +16,14 @@
         FROM Wordbooks
 		WHERE user_id = #{userId}
 		  AND english LIKE CONCAT(#{term}, '%')
+	</select>
+
+	<select id="searchWithDate" resultType="Word">
+		SELECT *
+		FROM Wordbooks
+		WHERE user_id = #{userId}
+		  AND updated_at <![CDATA[>=]]> #{fromDate}
+		  AND updated_at <![CDATA[<=]]> #{toDate}
 	</select>
 
 	<insert id="addWord">
@@ -30,10 +39,11 @@
 
 	<update id="updateWord">
 		UPDATE Wordbooks
-		SET korean = #{korean},
-			example = #{example},
-			memorized = #{memorized},
-			updated_at = NOW()
+		<set>
+			<if test="korean != null">korean = #{korean},</if>
+			<if test="example != null">example = #{example},</if>
+			<if test="memorized != null">memorized = #{memorized},</if>
+		</set>
 		WHERE user_id = #{userId}
 		  AND english = #{english}
 	</update>
