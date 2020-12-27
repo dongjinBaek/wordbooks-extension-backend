@@ -15,7 +15,7 @@ public class Word {
     private String korean;
     private String example;
     private Boolean memorized;
-    private String updatedAt;
+    private String createdAt;
 
     public Word(String english, String korean) {
         this.english = english;

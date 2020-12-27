@@ -22,12 +22,12 @@
 		SELECT *
 		FROM Wordbooks
 		WHERE user_id = #{userId}
-		  AND updated_at <![CDATA[>=]]> #{fromDate}
-		  AND updated_at <![CDATA[<=]]> #{toDate}
+		  AND created_at <![CDATA[>=]]> #{fromDate}
+		  AND created_at <![CDATA[<=]]> #{toDate}
 	</select>
 
 	<insert id="addWord">
-		INSERT INTO Wordbooks (user_id, english, korean, example, memorized, updated_at)
+		INSERT INTO Wordbooks (user_id, english, korean, example, memorized, created_at)
 		VALUES (#{userId}, #{english}, #{korean}, #{example}, false, NOW())
 	</insert>
 
