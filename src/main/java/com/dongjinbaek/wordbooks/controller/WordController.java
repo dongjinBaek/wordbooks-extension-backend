@@ -6,6 +6,7 @@ import java.util.List;
 import com.dongjinbaek.wordbooks.dto.Word;
 import com.dongjinbaek.wordbooks.service.WordService;
 import com.dongjinbaek.wordbooks.util.DateUtils;
+import com.dongjinbaek.wordbooks.util.SecurityUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,24 +31,21 @@ public class WordController {
 
     @GetMapping("/search/{term}")
     public List<Word> search(@PathVariable("term") String term) {
-        String userId = "dj9136";
-        return wordService.getWordLists(userId, term);
+        return wordService.getWordLists(SecurityUtils.getLoginUserId(), term);
     }
 
     @GetMapping("/")
     public List<Word> searchWithWord(@RequestParam("from-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
             @RequestParam("to-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) {
-        String userId = "dj9136";
-
         fromDate = DateUtils.atStartOfDay(fromDate);
         toDate = DateUtils.atEndOfDay(toDate);
-        return wordService.searchWithDate(userId, fromDate, toDate);
+        return wordService.searchWithDate(SecurityUtils.getLoginUserId(), fromDate, toDate);
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Word addWord(@RequestBody Word word) {
-        word.setUserId("dj9136");
+        word.setUserId(SecurityUtils.getLoginUserId());
         wordService.addWord(word);
         return word;
     }
@@ -55,8 +53,7 @@ public class WordController {
     @DeleteMapping("/{english}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteWord(@PathVariable("english") String english) {
-        String userId = "dj9136";
-        wordService.deleteWord(userId, english);
+        wordService.deleteWord(SecurityUtils.getLoginUserId(), english);
     }
 
     @PatchMapping("/{english}")
@@ -65,7 +62,7 @@ public class WordController {
         if (!english.equals(word.getEnglish())) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
         }
-        word.setUserId("dj9136");
+        word.setUserId(SecurityUtils.getLoginUserId());
         wordService.updateWord(word);
     }
 }

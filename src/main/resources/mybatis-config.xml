@@ -8,6 +8,7 @@
 	
 	<typeAliases>
 		<package name="com.dongjinbaek.wordbooks.dto"/>
+		<package name="com.dongjinbaek.wordbooks.dto.user"/>
 	</typeAliases>
 	
 </configuration>
