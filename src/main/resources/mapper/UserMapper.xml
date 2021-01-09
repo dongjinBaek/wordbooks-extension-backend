@@ -9,6 +9,12 @@
         WHERE user_id = #{userId}
     </select>
 
+    <select id="getUserAuthInfo" resultType="User">
+        SELECT *
+        FROM Users
+        WHERE user_id = #{userId}
+    </select>
+
 	<insert id="addUser">
         INSERT INTO Users(user_id, encoded_password, token)
         VALUES (#{userId}, #{encodedPassword}, #{token})

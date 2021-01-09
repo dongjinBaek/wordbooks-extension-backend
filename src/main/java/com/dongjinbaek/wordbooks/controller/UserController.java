@@ -1,8 +1,10 @@
 package com.dongjinbaek.wordbooks.controller;
 
 import com.dongjinbaek.wordbooks.dto.user.User;
+import com.dongjinbaek.wordbooks.dto.user.UserLoginRequest;
 import com.dongjinbaek.wordbooks.dto.user.UserLoginResponse;
 import com.dongjinbaek.wordbooks.dto.user.UserRegister;
+import com.dongjinbaek.wordbooks.exception.InvalidPasswordException;
 import com.dongjinbaek.wordbooks.service.UserService;
 import com.dongjinbaek.wordbooks.util.JwtUtils;
 import org.springframework.http.HttpStatus;
@@ -26,8 +28,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public void login() {
-
+    public UserLoginResponse login(@RequestBody UserLoginRequest userLoginRequest) throws InvalidPasswordException {
+        String userId = userLoginRequest.getUserId();
+        User user = userService.getUserAuthInfo(userId);
+        System.out.println(userLoginRequest.getPassword());
+        if (!passwordEncoder.matches(userLoginRequest.getPassword(), user.getEncodedPassword())) {
+            throw new InvalidPasswordException();
+        }
+        return new UserLoginResponse(user);
     }
 
     @PostMapping("/register")

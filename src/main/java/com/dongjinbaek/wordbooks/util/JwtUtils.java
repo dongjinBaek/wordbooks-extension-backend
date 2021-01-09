@@ -23,7 +23,6 @@ public class JwtUtils {
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
             String userId = jwt.getSubject();
-            System.out.println(userId);
             return UserInfo.builder().userId(userId).build();
         } catch (JWTVerificationException exception) {
             exception.printStackTrace();

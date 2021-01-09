@@ -16,6 +16,10 @@ public class UserService {
         return userMapper.getUser(userId);
     }
 
+    public User getUserAuthInfo(String userId) {
+        return userMapper.getUserAuthInfo(userId);
+    }
+
     public void addUser(User user) {
         userMapper.addUser(user);
     }
