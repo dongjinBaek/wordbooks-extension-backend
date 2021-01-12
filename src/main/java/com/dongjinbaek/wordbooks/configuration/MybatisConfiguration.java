@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 
 @Configuration
 @MapperScan("com.dongjinbaek.wordbooks.mapper")
@@ -20,6 +21,7 @@ public class MybatisConfiguration {
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
+        sessionFactory.setVfs(SpringBootVFS.class);
 
         sessionFactory.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
         sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/*Mapper.xml"));
