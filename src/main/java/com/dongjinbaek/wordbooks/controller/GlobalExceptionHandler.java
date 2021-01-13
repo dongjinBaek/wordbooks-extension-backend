@@ -1,6 +1,7 @@
 package com.dongjinbaek.wordbooks.controller;
 
 import com.dongjinbaek.wordbooks.exception.InvalidPasswordException;
+import com.dongjinbaek.wordbooks.exception.NoSuchUserException;
 
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleBadRequest() {
+        return;
+    }
+
+    @ExceptionHandler(NoSuchUserException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public void noSuchUser() {
         return;
     }
 

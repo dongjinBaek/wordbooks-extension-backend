@@ -18,7 +18,6 @@ public class JwtUtils {
 
     public UserInfo parseToken(String token) {
         try {
-            System.out.println(token);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
