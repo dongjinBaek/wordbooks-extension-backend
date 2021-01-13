@@ -10,5 +10,7 @@
 ## Run
 ```sh
 (at wordbooks-extension-backend/ )
-$ export GOOGLE_APPLICATION_CREDENTIALS="./credentials.json" && ./mvnw spring-boot:run
+$ ./mvnw package
+$ docker build -t id/name .
+$ docker run -p 8080:8080 id/name
 ```
