@@ -27,8 +27,8 @@
 	</select>
 
 	<insert id="addWord">
-		INSERT INTO Wordbooks (user_id, english, korean, example, memorized, created_at)
-		VALUES (#{userId}, #{english}, #{korean}, #{example}, false, NOW())
+		INSERT INTO Wordbooks (user_id, english, translated, example, memorized, created_at)
+		VALUES (#{userId}, #{english}, #{translated}, #{example}, false, NOW())
 	</insert>
 
 	<delete id="deleteWord">
@@ -40,7 +40,7 @@
 	<update id="updateWord">
 		UPDATE Wordbooks
 		<set>
-			<if test="korean != null">korean = #{korean},</if>
+			<if test="translated != null">translated = #{translated},</if>
 			<if test="example != null">example = #{example},</if>
 			<if test="memorized != null">memorized = #{memorized},</if>
 		</set>

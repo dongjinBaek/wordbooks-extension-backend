@@ -15,21 +15,24 @@ import com.google.cloud.translate.*;
 public class WordService {
     @Autowired
     WordMapper wordMapper;
+    @Autowired
+    UserService userService;
 
     public Word getWord(String userId, String english) {
         return wordMapper.getWord(userId, english);
     }
 
     public List<Word> getWordLists(String userId, String term) {
-        Translate translate = TranslateOptions.newBuilder().setTargetLanguage("ko").build().getService();
+        String language = userService.getLanguage(userId);
+        Translate translate = TranslateOptions.newBuilder().setTargetLanguage(language).build().getService();
 
-        String korean = translate.translate(term).getTranslatedText();
-        if (term.equals(korean)) {
-            korean = "";
+        String translated = translate.translate(term).getTranslatedText();
+        if (term.equals(translated)) {
+            translated = "";
         }
-        Word translated = new Word(term, korean);
+        Word translatedWord = new Word(term, translated);
         List<Word> words = wordMapper.searchWords(userId, term);
-        words.add(0, translated);
+        words.add(0, translatedWord);
         return words;
     }
 

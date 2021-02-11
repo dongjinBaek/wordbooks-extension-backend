@@ -16,7 +16,19 @@
     </select>
 
 	<insert id="addUser">
-        INSERT INTO Users(user_id, encoded_password, token)
-        VALUES (#{userId}, #{encodedPassword}, #{token})
+        INSERT INTO Users(user_id, encoded_password, token, language)
+        VALUES (#{userId}, #{encodedPassword}, #{token}, #{language})
     </insert>
+
+    <update id="updateLanguage">
+        UPDATE Users
+        SET language = #{language}
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="getLanguage" resultType="String">
+        SELECT language
+        FROM Users
+        WHERE user_id = #{userId}
+    </select>
 </mapper>

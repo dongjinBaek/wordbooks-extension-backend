@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class Word {
     private String userId;
     private String english;
-    private String korean;
+    private String translated;
     private String example;
     private Boolean memorized;
     private String createdAt;
 
-    public Word(String english, String korean) {
+    public Word(String english, String translated) {
         this.english = english;
-        this.korean = korean;
+        this.translated = translated;
     }
 }

@@ -2,6 +2,7 @@ package com.dongjinbaek.wordbooks.service;
 
 import com.dongjinbaek.wordbooks.dto.user.User;
 import com.dongjinbaek.wordbooks.dto.user.UserInfo;
+import com.dongjinbaek.wordbooks.dto.user.UserLanguage;
 import com.dongjinbaek.wordbooks.mapper.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,13 @@ public class UserService {
 
     public void addUser(User user) {
         userMapper.addUser(user);
+    }
+
+    public String getLanguage(String userId) {
+        return userMapper.getLanguage(userId);
+    }
+
+    public int updateLanguage(UserLanguage userLanguage) {
+        return userMapper.updateLanguage(userLanguage);
     }
 }

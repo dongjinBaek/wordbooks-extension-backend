@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class UserRegister {
     private String userId;
     private String password;
-
-    
+    private String language;
 }
